@@ -1,1 +1,0 @@
-cuando se ejecuta, el scan f permite ingresar ambos numeros enla misma linea, se ingresa uno y luego , y el otro 
