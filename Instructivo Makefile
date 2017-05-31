@@ -8,8 +8,8 @@ gcc main.c -o ejecutable -lm -Wall
 usamos las referencias (LAS REFERENCIAS SIEMPRE VAN EN MAYÚSCULA):
 CC = gcc
 ARCHIVOS = main.c funciones.c
-EXE = ejecutable
-LIB = -lm
+EXE = ejecutable //nombre del ejecutable
+LIB = -lm //librerias con las que se quiere compilar
 
 entonces queda:
 
