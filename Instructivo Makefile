@@ -1,0 +1,35 @@
+Instructivo Makefile
+1) crear un archivo llamado LITERALMENTE Makefile con M mayúscula.
+el archivo debe estar donde están mis programas .c que quiero compilar. por esta razón es recomendable ponerle nombres genericos a los main y funciones. por ejemplo, main.c y funciones.c
+2) en la primera parte, se ponen nombres de referencia. como usamos para compilar:
+
+gcc main.c -o ejecutable -lm -Wall
+
+usamos las referencias (LAS REFERENCIAS SIEMPRE VAN EN MAYÚSCULA):
+CC = gcc
+ARCHIVOS = main.c funciones.c
+EXE = ejecutable
+LIB = -lm
+
+entonces queda:
+
+$(CC) $(ARCHIVOS) -o $(EXE) $(LIB) -Wall
+
+se hace entonces una instruccion le decimos al makefile qué queremos hacer.
+
+CC = gcc
+ARCHIVOS = main.c
+EXE = ejecutable
+LIB = -lm
+
+crear: $(ARCHIVOS)
+	$(CC) $(ARCHIVOS) -o $(EXE) $(LIB) -Wall
+
+limpiar:
+	rm -f *.o core
+
+
+entonces cuando estamos en consola, ejecutamos el comando:
+usuario@pc:~$ make crear
+
+y debería compilarse el programa. después de eso, ejecutamos el programa.
