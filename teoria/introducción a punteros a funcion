@@ -1,0 +1,9 @@
+el nombre de la funcion es su dirección de comienzo.
+int (*pointer) (int, int)
+pointer = mifuncion;
+pointer(10, 20); //ó// (*pointer)(10, 20);
+
+float suma (float, float)
+float resta (float, float)
+float multiplicacion (float, float)
+float division (float, float)
