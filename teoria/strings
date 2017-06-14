@@ -1,0 +1,46 @@
+char palabra[20];
+['H']['O']['L']['A']['\0'][][][][][][][][][][][][][][][]
+
+HEADERS PARA STRINGS:
+strings.h
+
+*********************************************************************************
+PROGRAMA
+*********************************************************************************
+
+char palabra [20];
+
+palabra[0]='i';
+palabra[1]='n';
+palabra[2]='f';
+.
+.
+.
+palabra[10]='a';
+palabra[11]='\0';
+
+scanf("%s", palabra); //para escanear una string (una sola palabra, sin espacios)
+fgets(palabra, TAM_PALABRA, stdin); //donde palabra es el buffer(donde quiero guardar), TAM_PALABRA (tamaño del vector), stdin(le estamos diciendo que recibimos de teclado)
+printf("%s\n", palabra); //para imprimir una string
+
+strcpy(palabra, "informatica"); 
+**********************************************************************************
+PROTOTIPOS
+**********************************************************************************
+- strcpy (char *destino, char *fuente);
+/*copia el segundo vector en el primero*/
+- strcat (char *destino, char *fuente);
+-->strcat (pal1, pal2); 
+/*suponiendo pal1="hola" y pal2="info" entonces después de pasar por la función, pal 1 queda como: "holainfo"*/
+- int strlen (char *s);
+/*cantidad de caracteres sin el null*/
+- int strcmp (char *s1, char *s2); 
+/*
+devuelve 0 cuando son iguales
+devuelve mayor que 0 cuando s1>s2
+devuelve menor que 0 cuando s1<s2
+*/
+- char* strstr (char *sLargo, char *sCorto)
+/*busca un string corto en un string largo*/
+- char* strchr (char *s, char c);
+/*busca un sólo char en un string*/
