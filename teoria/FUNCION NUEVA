@@ -1,0 +1,5 @@
+atoi
+array to int
+int atoi (char*);
+long atol (char*);
+long long atoll (char*);

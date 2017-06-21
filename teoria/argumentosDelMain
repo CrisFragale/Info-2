@@ -1,0 +1,16 @@
+argumentos del main:
+
+int main(int argc, char** argv ){
+	// argc es argumento cantidad
+	// argv es argumento vector
+}
+
+cuando ejecuto puedo poner
+
+./ejecutable pal1 pal2 pal3
+
+0[]--> ruta al archivo
+1[]--> pal1
+2[]--> pal2
+3[]--> pal3
+

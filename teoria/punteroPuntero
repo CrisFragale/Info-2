@@ -1,0 +1,11 @@
+char * vec[3];
+
+[]--> pal1=[p][e][p][e][\0][]
+[]--> pal2=[h][o][l][a][\0][]
+[]--> pal3=[c][h][a][u][\0][]
+[]
+
+vector[1] //tenemos la dir de comienzo de la palabra
+*(vector[1]+2) //tenemos la letra l del "hola"
+ó
+vector[1][2] //es lo mismo
