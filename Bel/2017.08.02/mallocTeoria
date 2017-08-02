@@ -1,0 +1,55 @@
+/*
+--------------------------------------------------------------------------------
+MEMORIA DINÁMICA
+--------------------------------------------------------------------------------
+*/
+int a;
+int b[TAM];
+//estática
+int a=0;
+scanf("%d", &a)
+int b[a];
+//dinámica
+
+
+FUNCIÓN MALLOC
+void* malloc( (strlen(str)+1) * sizeof(char));
+// malloc pide memoria
+
+
+#include <stdlib.h>
+invertir(char *str){
+	char *aux;
+	aux=(char*) malloc( (strlen(str)+1) * sizeof(char));
+	free(aux);
+}
+invertir(int *num){
+	int *aux;
+	aux=(int*) malloc( (strlen(str)+1) * sizeof(int) );
+	free (aux);
+}
+
+//PROGRAMITA DE MUESTRA
+
+int main(){
+	char* palabras[TAM];
+	char buff[1024];
+	int tam, i;
+	for (i = 0; i < TAM; i++){
+		scanf("%s", buff);
+		tam=strlen(buff)+1;
+		palabras[i]=(char*)malloc(tam);
+		strcpy(palabras[i], buff);
+		mostrarPalabra(palabras[i]);
+	}
+	//mostrar palabras
+	for (i = 0; i < TAM; i++){
+		free(palabras[i]);
+	}
+}
+void mostrarPalabra(char *str){
+	int i;
+	for (i = 0; i < TAM; i++){
+		printf("%s\n", palabras[i] );
+	}
+}
