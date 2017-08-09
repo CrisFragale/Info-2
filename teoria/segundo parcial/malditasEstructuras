@@ -1,0 +1,78 @@
+/*ESTRUCTURAS
+
+mis tipos de datos hasta el momento son:
+int
+char
+float
+long
+double
+int*
+char*
+float*
+long*
+double*
+
+las estructuras sirven para encapsular datos
+por ejemplo
+si quiero hacer una agenda, necesito nombre, teléfono y mail.
+entonces tendría que hacer
+char* nombre;
+char* telefono
+char* mail;
+
+para simplificar esto, se hace una estructura y se convierte en un tipo de datos personal.
+*/
+struct NOMBRE_DEL_DATO{
+	int a;
+	int b;
+}
+/*
+ahora, mis datos son:
+int
+char
+float
+long
+double
+NOMBRE_DEL_DATO
+int*
+char*
+float*
+long*
+double*
+NOMBRE_DEL_DATO*
+
+typedef: me permite redefinir un tipo de dato.
+
+cuando creamos estructuras, hacemos un typedef para no tener que escribir "struct NOMBRE_DEL_DATO" cada vez que la nombro.
+*/
+typedef struct NOMBRE_DEL_DATO{
+	int a;
+	int b;
+}nuevoDato;
+
+nuevoDato p, q;
+p.a=33;
+p.b=52;
+q.a=20;
+q.b=2;
+
+
+cargar(&p);
+
+void cargar(nuevoDato* lala){
+	int aux;
+	scanf("%d", &p->x);
+	scanf("%d", &p->y);
+}
+
+struct Dato2{
+	nuevoDato p1;
+	nuevoDato p2;
+}
+typedef struct Dato2 masDatos;
+
+masDatos.p1.x=4;
+masDatos.p1.y=8;
+masDatos.p2.x=33;
+masDatos.p2.y=40;
+//con punto, voy entrando en las estructuras.
