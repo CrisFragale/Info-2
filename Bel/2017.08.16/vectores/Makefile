@@ -1,0 +1,16 @@
+CC = gcc
+LIB = -lm
+TEMPS = -save-temps
+FILES = main.c funciones.c
+OUT_EXE = eje
+
+build: $(FILES)
+	$(CC) $(FILES) -o $(OUT_EXE) $(LIB) $(TEMPS) -Wall
+
+clean:
+	rm -f *.o core
+	rm -f *.s core
+	rm -f *.i core
+	rm -f $(OUT_EXE)
+
+rebuild: clean build
