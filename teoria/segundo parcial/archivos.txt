@@ -1,0 +1,44 @@
+TODO ES UN ARCHIVO
+en linux TODO es un archivo porque todo, desde los archivos guardados hasta los dispositivos y perifericos, puedo leer y escribirlos. 
+
+hay fuciones de UNIX y ANSIC las de UNIX no son compatibles con windows. Las ANSIC son compatibles con todos.
+
+SIEMPRE VOY A NECESITAR HACER ESTO:
+* crearlo si no existe ó abrirlo si ya existe.
+	-path y nombre del archivo.
+*conocer ó establecer formato.
+*recorrer el archivo hasta el final ó escribir lo que necesito
+*cerrar el archivo.
+
+UNIX:
+
+
+ANSIC:
+FILE *fp;
+fp = fopen("PATH_Y_NOMBRE_DEL_ARCHIVO", "COMO_LO_VOY_A_USAR");
+	primer parámetro: nombre
+	segundo parámetro: "r" (sólo lectura) ó "w" (sólo escritura) ó "w+" (escritura pero se puede leer) ó "a" (lectura y escritura) ó "r+" (lectura pero se puede escribir).
+fopen en general no nos da los permisos que necesitamos para abrirlo. 
+CAMBIAMOS LOS PERMISOS DEL ARCHIVO CON:
+chmod 0[NUMERO_DE_PERMISOS] NOMBRE_DEL_ARCHIVO
+0 -> aclara que es octal
+numero_de_permisos según los permisos UGO
+
+user group other
+---   ---   ---
+rwx   rwx   rwx
+
+fgets(variable, TAM, fp);
+var = fgetc(fp);
+fputc(var, fp);
+fprintf(fp, "%[TIPO_DE_DATO]", variable);
+fscanf(fp, "%[TIPO_DE_DATO]", &variable); ----> Lee hasta el espacio ó enter. Lo que pase primero.
+feof(fp); ----> retorna: 0 si el archivo NO terminó. -1 si el archivo terminó.
+fclose(fp);
+
+CUANDO EJECUTO UNA APLICACIÓN CON STDIO.H
+CREO:
+FILE *stdin --->está vinculado con el teclado
+FILE *stdout -->está vinculado con la pantalla.
+
+si quiero que fprintf imprima en la pantalla, en lugar de mandarle el fp, le mando stdout y todo piola
