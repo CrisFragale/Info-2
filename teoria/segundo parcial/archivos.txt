@@ -10,16 +10,7 @@ SIEMPRE VOY A NECESITAR HACER ESTO:
 *recorrer el archivo hasta el final ó escribir lo que necesito
 *cerrar el archivo.
 
-UNIX:
-
-
-ANSIC:
-FILE *fp;
-fp = fopen("PATH_Y_NOMBRE_DEL_ARCHIVO", "COMO_LO_VOY_A_USAR");
-	primer parámetro: nombre
-	segundo parámetro: "r" (sólo lectura) ó "w" (sólo escritura) ó "w+" (escritura pero se puede leer) ó "a" (lectura y escritura) ó "r+" (lectura pero se puede escribir).
-fopen en general no nos da los permisos que necesitamos para abrirlo. 
-CAMBIAMOS LOS PERMISOS DEL ARCHIVO CON:
+CAMBIAMOS LOS PERMISOS DE UN ARCHIVO CON:
 chmod 0[NUMERO_DE_PERMISOS] NOMBRE_DEL_ARCHIVO
 0 -> aclara que es octal
 numero_de_permisos según los permisos UGO
@@ -27,6 +18,38 @@ numero_de_permisos según los permisos UGO
 user group other
 ---   ---   ---
 rwx   rwx   rwx
+como es octal, convertimos el binario resultante en un numero octal y ese es el numero de permisos
+
+UNIX:
+
+los SO unix tienen el file descriptor. es un entero. 
+int fd;
+OPEN:
+fd = open("PATH_Y_NOMBRE_DEL_ARCHIVO", [PERMISOS] | [COMPORTAMIENTO], [PERMISOS UGO])
+	los permisos son defines: O_RDONLY (sólo lectura) ó O_WRONLY (sólo escritura) ó O_RDWR (lectura y escritura)
+	los comportamientos son: O_CREAT (crea el archivo) ó O_TRUNC (formatea el archivo) ó O_APEND (agrega datos a lo ya existente)
+
+	ERROR: fd==-1
+
+READ:
+cantLeida=read(fd, &variable, sizeof(jugador_t));
+	si cantLeida==0 --> llegué al final del archivo.
+
+WRITE:
+cantEscrita=write(fd, variable, sizeof(jugador_t));
+
+CLOSE:
+close(fd);
+
+
+ANSIC:
+
+FILE *fp;
+fp = fopen("PATH_Y_NOMBRE_DEL_ARCHIVO", "COMO_LO_VOY_A_USAR");
+	primer parámetro: nombre
+	segundo parámetro: "r" (sólo lectura) ó "w" (sólo escritura) ó "w+" (escritura pero se puede leer) ó "a" (lectura y escritura) ó "r+" (lectura pero se puede escribir). SI SE TRABAJA CON ARCHIVO BINARIO HAY QUE AGRAGARLE "+b" PARA QUE ENTIENDA QUE TIENE QUE ABRIRLO COMO ARCHIVO BINARIO.
+
+fopen en general no nos da los permisos que necesitamos para abrirlo. 
 
 fgets(variable, TAM, fp);
 var = fgetc(fp);
@@ -42,3 +65,19 @@ FILE *stdin --->está vinculado con el teclado
 FILE *stdout -->está vinculado con la pantalla.
 
 si quiero que fprintf imprima en la pantalla, en lugar de mandarle el fp, le mando stdout y todo piola
+
+
+
+teniendo:
+
+typedef struct jugador{
+	int nivel;
+	char nom[20];
+	int puntaje;
+}jugador_t;
+
+fread
+	fread (&variable, sizeof(jugador_t), 1, fp) --> escribe la variable
+
+fwrite
+	fwrite (&variable, sizeof(jugador_t), 1, fp) --> escribe el archivo
