@@ -1,23 +1,23 @@
 #include "sock-lib.h"
 
-#define MAXDATASIZE 4096/* m·xima cantidad de bytes que puede recibir en una transacciÛn*/
+#define MAXDATASIZE 4096/* m√°xima cantidad de bytes que puede recibir en una transacci√≥n*/
 
 int main(int argc, char * argv[])
 {
 	int sockfd;  /*File Descriptor para sockets*/
-	int numbytes;/*Contendr· el n˙mero de bytes recibidos por read () */
+	int numbytes;/*Contendr√° el n√∫mero de bytes recibidos por read () */
 	char buf[MAXDATASIZE];  /* Buffer donde se reciben los datos de read ()*/
 	char frase[255];
 	
 
-/* Tratamiento de la lÌnea de comandos. */
+/* Tratamiento de la l√≠nea de comandos. */
 	if (argc < 3)
 	{
 		fprintf(stderr,"uso: %s hostname port\n",argv [0]);
 		exit(1);
         }
 
-/*Me conecto al servidor*/
+/*Me conecto al servidor*/       //IP      puerto
 	sockfd = cliente_conectar (argv[1], atoi(argv[2]));
 
 
