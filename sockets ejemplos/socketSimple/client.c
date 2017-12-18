@@ -1,44 +1,58 @@
 #include "sock-lib.h"
+#include "cristian.h"
 
-#define MAXDATASIZE 4096/* máxima cantidad de bytes que puede recibir en una transacción*/
 
 int main(int argc, char * argv[])
 {
-	int sockfd;  /*File Descriptor para sockets*/
-	int numbytes;/*Contendrá el número de bytes recibidos por read () */
-	char buf[MAXDATASIZE];  /* Buffer donde se reciben los datos de read ()*/
-	char frase[255];
-	
+	int sockfd; 
+	mi_app_t mis_datos;
 
-/* Tratamiento de la línea de comandos. */
-	if (argc < 3)
+	init_mi_struct(&mis_datos,argv[3]); //nombre del J2
+
+	if ((mis_datos.sockfd = cliente_conectar (argv[1], atoi(argv[2])) == -1)
 	{
-		fprintf(stderr,"uso: %s hostname port\n",argv [0]);
-		exit(1);
-        }
+		perror ("Falló la creación de la conexión"); 
+		exit (1);
+	}
+	mi_allegro_init_windowed(800,600);
 
-/*Me conecto al servidor*/       //IP      puerto
-	sockfd = cliente_conectar (argv[1], atoi(argv[2]));
-
-
-	while( strcmp(buf, "fin\n") )
+	if(init_aplicacion(&mis_datos) == 0)  // Inicializa juego
 	{
-	   
-		/* Recibimos los datos del servidor */
-		if ((numbytes = read (sockfd, buf, MAXDATASIZE)) <= 0)
+
+		while(!mis_datos.quit)    // Dibuja hasta que se presiona escape
 		{
-			perror("error de lectura en el socket");
-			exit(1);
+		    while(tick < FPS_MS)
+		    {
+		        yield_timeslice();      // Esperar hasta que hayan pasado los ticks necesarios y el OS me dé lugar
+		    }
+
+		    while(tick >= FPS_MS)
+		    {
+		        // Hago logica tantas veces hasta que tick
+		        // sea menor a FPS_MS como para que sea ejecutada
+		        // FPS veces por segundo
+		        if(logic_aplicacion(&mis_datos))
+		        {
+		           mis_datos.quit = 1;
+		        }
+
+		        tick -= FPS_MS;	// Decremento tick
+		    }
+		    draw_aplicacion(&mis_datos);
+		    
 		}
-		/* Visualizamos lo recibido */
-		buf[numbytes] = '\0';
-		printf("Recibido: %s",buf);
-	  
-		if( strcmp(buf, "fin\n") != 0 )
-		{
-			/* Contestamos al servidor */
-			fgets(frase, 255, stdin);
-			if (write (sockfd, frase , sizeof (frase)) == -1)
+	}
+	else
+	{
+		printf("No pudo iniciar timer\n");
+	}
+
+    mi_allegro_exit(&mis_datos);	// Se debe borrar imagenes y liberar memoria antes de cerrar allegro.
+
+    return 0;
+} END_OF_MAIN()
+
+	/* write ((sockfd, frase , sizeof (frase)) == -1)
 			{
 				perror("Error escribiendo mensaje en socket");
 				exit (1);
@@ -48,8 +62,7 @@ int main(int argc, char * argv[])
 		}
 	}
 	
-	
-/* Devolvemos recursos al sistema */
 	close(sockfd);
 	return 0;
 }
+*/

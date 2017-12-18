@@ -1,33 +1,11 @@
 #include "sock-lib.h"
 
-#define MAXDATASIZE 4096/* máxima cantidad de bytes que puede recibir en una transacción*/
+#define MAXDATASIZE 4096/* mÃ¡xima cantidad de bytes que puede recibir en una transacciÃ³n*/
 
 int main (int argc, char * argv[])
 {
-	int sockfd;			/* File Descriptor del socket por el que el
-					servidor "escuchará" conexiones*/
-	char frase[255];
-	int sockdup; 
-	
-	int numbytes;/*Contendrá el número de bytes recibidos por read () */
-	char buf[MAXDATASIZE];
-	
-	/*Para el select*/
 	fd_set descriptoresLectura; 
 	int maximo;
-	
-	if( argc < 2 )
-	{
-	    fprintf(stderr,"uso: %s port\n",argv [0]);
-	    exit(1);
-	  
-	}
-
-	if ((sockfd = servidor_abrirConexion ( atoi(argv[1]))) == -1)
-	{
-		perror ("Falló la creación de la conexión"); 
-		exit (1);
-	}
 
 	while(1)
 	{

@@ -1,6 +1,5 @@
 #include "sock-lib.h"
-
-#define MAXDATASIZE 4096/* máxima cantidad de bytes que puede recibir en una transacción*/
+ #include "cliente.h"
 
 int main(int argc, char * argv[])
 {
