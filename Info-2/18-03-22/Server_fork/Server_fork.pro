@@ -1,4 +1,4 @@
-QT += core
+ QT += core
 QT -= gui
 
 TARGET = Server_fork
